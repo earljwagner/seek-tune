@@ -3,8 +3,8 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"song-recognition/models"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/models"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"strings"
 
 	"github.com/mattn/go-sqlite3"

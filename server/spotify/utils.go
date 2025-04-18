@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
-	"song-recognition/db"
+	"github.com/earljwagner/seek-tune/server/db"
 	"strings"
 )
 

@@ -6,8 +6,8 @@ package shazam
 import (
 	"fmt"
 	"math"
-	"song-recognition/db"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/db"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"sort"
 	"time"
 )

@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"strings"
 )
 

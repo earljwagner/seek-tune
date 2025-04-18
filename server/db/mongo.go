@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"song-recognition/models"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/models"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"strings"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -35,7 +35,7 @@ func (db *MongoClient) Close() error {
 }
 
 func (db *MongoClient) StoreFingerprints(fingerprints map[uint32]models.Couple) error {
-	collection := db.client.Database("song-recognition").Collection("fingerprints")
+	collection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("fingerprints")
 
 	for address, couple := range fingerprints {
 		filter := bson.M{"_id": address}
@@ -59,7 +59,7 @@ func (db *MongoClient) StoreFingerprints(fingerprints map[uint32]models.Couple) 
 }
 
 func (db *MongoClient) GetCouples(addresses []uint32) (map[uint32][]models.Couple, error) {
-	collection := db.client.Database("song-recognition").Collection("fingerprints")
+	collection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("fingerprints")
 
 	couples := make(map[uint32][]models.Couple)
 
@@ -100,7 +100,7 @@ func (db *MongoClient) GetCouples(addresses []uint32) (map[uint32][]models.Coupl
 }
 
 func (db *MongoClient) TotalSongs() (int, error) {
-	existingSongsCollection := db.client.Database("song-recognition").Collection("songs")
+	existingSongsCollection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("songs")
 	total, err := existingSongsCollection.CountDocuments(context.Background(), bson.D{})
 	if err != nil {
 		return 0, err
@@ -110,7 +110,7 @@ func (db *MongoClient) TotalSongs() (int, error) {
 }
 
 func (db *MongoClient) RegisterSong(songTitle, songArtist, ytID string) (uint32, error) {
-	existingSongsCollection := db.client.Database("song-recognition").Collection("songs")
+	existingSongsCollection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("songs")
 
 	// Create a compound unique index on ytID and key, if it doesn't already exist
 	indexModel := mongo.IndexModel{
@@ -144,7 +144,7 @@ func (db *MongoClient) GetSong(filterKey string, value interface{}) (s Song, son
 		return Song{}, false, errors.New("invalid filter key")
 	}
 
-	songsCollection := db.client.Database("song-recognition").Collection("songs")
+	songsCollection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("songs")
 	var song bson.M
 
 	filter := bson.M{filterKey: value}
@@ -179,7 +179,7 @@ func (db *MongoClient) GetSongByKey(key string) (Song, bool, error) {
 }
 
 func (db *MongoClient) DeleteSongByID(songID uint32) error {
-	songsCollection := db.client.Database("song-recognition").Collection("songs")
+	songsCollection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection("songs")
 
 	filter := bson.M{"_id": songID}
 
@@ -192,7 +192,7 @@ func (db *MongoClient) DeleteSongByID(songID uint32) error {
 }
 
 func (db *MongoClient) DeleteCollection(collectionName string) error {
-	collection := db.client.Database("song-recognition").Collection(collectionName)
+	collection := db.client.Database("github.com/earljwagner/seek-tune/server").Collection(collectionName)
 	err := collection.Drop(context.Background())
 	if err != nil {
 		return fmt.Errorf("error deleting collection: %v", err)

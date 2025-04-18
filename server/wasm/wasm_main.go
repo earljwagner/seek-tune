@@ -4,8 +4,8 @@
 package main
 
 import (
-	"song-recognition/shazam"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/shazam"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"syscall/js"
 )
 

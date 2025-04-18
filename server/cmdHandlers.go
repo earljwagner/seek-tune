@@ -10,14 +10,14 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"song-recognition/db"
-	"song-recognition/shazam"
-	"song-recognition/spotify"
-	"song-recognition/utils"
-	"song-recognition/wav"
 	"strconv"
 	"strings"
 
+	"github.com/earljwagner/seek-tune/server/db"
+	"github.com/earljwagner/seek-tune/server/shazam"
+	"github.com/earljwagner/seek-tune/server/spotify"
+	"github.com/earljwagner/seek-tune/server/utils"
+	"github.com/earljwagner/seek-tune/server/wav"
 	"github.com/fatih/color"
 	socketio "github.com/googollee/go-socket.io"
 	"github.com/googollee/go-socket.io/engineio"
@@ -33,7 +33,7 @@ const (
 
 var yellow = color.New(color.FgYellow)
 
-func find(filePath string) {
+func Find(filePath string) {
 	wavInfo, err := wav.ReadWavInfo(filePath)
 	if err != nil {
 		yellow.Println("Error reading wave info:", err)
@@ -241,7 +241,7 @@ func erase(songsDir string) {
 	fmt.Println("Erase complete")
 }
 
-func save(path string, force bool) {
+func Save(path string, force bool) {
 	fileInfo, err := os.Stat(path)
 	if err != nil {
 		fmt.Printf("Error stating path %v: %v\n", path, err)

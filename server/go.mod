@@ -1,4 +1,4 @@
-module song-recognition
+module github.com/earljwagner/seek-tune/server
 
 go 1.21.6
 

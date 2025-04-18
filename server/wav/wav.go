@@ -12,8 +12,8 @@ import (
 	"log/slog"
 	"os"
 	"os/exec"
-	"song-recognition/models"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/models"
+	"github.com/earljwagner/seek-tune/server/utils"
 	"strings"
 	"time"
 

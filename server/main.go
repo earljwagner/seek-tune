@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
-	"song-recognition/utils"
 
+	"github.com/earljwagner/seek-tune/server/utils"
 	"github.com/mdobak/go-xerrors"
 )
 
@@ -41,7 +41,8 @@ func main() {
 			os.Exit(1)
 		}
 		filePath := os.Args[2]
-		find(filePath)
+		Find(filePath)
+
 	case "download":
 		if len(os.Args) < 3 {
 			fmt.Println("Usage: main.go download <spotify_url>")
@@ -49,14 +50,17 @@ func main() {
 		}
 		url := os.Args[2]
 		download(url)
+
 	case "serve":
 		serveCmd := flag.NewFlagSet("serve", flag.ExitOnError)
 		protocol := serveCmd.String("proto", "http", "Protocol to use (http or https)")
 		port := serveCmd.String("p", "5000", "Port to use")
 		serveCmd.Parse(os.Args[2:])
 		serve(*protocol, *port)
+
 	case "erase":
 		erase(SONGS_DIR)
+
 	case "save":
 		indexCmd := flag.NewFlagSet("save", flag.ExitOnError)
 		force := indexCmd.Bool("force", false, "save song with or without YouTube ID")
@@ -67,7 +71,8 @@ func main() {
 			os.Exit(1)
 		}
 		filePath := indexCmd.Arg(0)
-		save(filePath, *force)
+		Save(filePath, *force)
+
 	default:
 		fmt.Println("Expected 'find', 'download', 'erase', 'save', or 'serve' subcommands")
 		os.Exit(1)

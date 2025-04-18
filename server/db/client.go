@@ -2,8 +2,8 @@ package db
 
 import (
 	"fmt"
-	"song-recognition/models"
-	"song-recognition/utils"
+	"github.com/earljwagner/seek-tune/server/models"
+	"github.com/earljwagner/seek-tune/server/utils"
 )
 
 type DBClient interface {

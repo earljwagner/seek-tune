@@ -1,7 +1,7 @@
 package shazam
 
 import (
-	"song-recognition/models"
+	"github.com/earljwagner/seek-tune/server/models"
 )
 
 const (
